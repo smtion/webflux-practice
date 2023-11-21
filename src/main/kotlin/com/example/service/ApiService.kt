@@ -20,44 +20,20 @@ class ApiService(
     private val productRepository: ProductRepository,
     private val employeeRepository: EmployeeRepository,
 ) {
-    fun getProduct(productId: Long): Mono<Product> =
-        productRepository.findById(productId)
-            .switchIfEmpty { Mono.error(ResponseStatusException(HttpStatus.NOT_FOUND)) }
+    // Todo Practice 1
+//    fun getProduct()
 
-    fun getEmployee(productId: Long): Mono<Employee> =
-        getProduct(productId)
-            .flatMap {
-                employeeRepository.findById(it.employeeId)
-            }
+    // Todo Practice 2
+//    fun getEmployee()
 
-    fun getProducts(dealId: Long): Flux<Product> =
-        dealProductRepository.findByDealId(dealId)
-            .map { it.productId }
-            .collectList()
-            .flatMapMany { productRepository.findAllById(it) }
+    // Todo Practice 3
+//    fun getProducts()
 
-    fun getProductsAndEmployee(dealId: Long): Flux<Pair<Product, Employee?>> =
-        getProducts(dealId)
-            .collectList()
-            .flatMap { products: List<Product> ->
-                val employeeIds: List<Long> = products.map(Product::employeeId).distinct()
-                employeeRepository.findAllById(employeeIds)
-                    .collectList()
-                    .map { mds ->
-                        val mdMap: Map<Long, Employee> = mds.associateBy(Employee::employeeId)
+    // Todo Practice 4
+//    fun getProductsAndEmployee(dealId: Long): Flux<Pair<Product, Employee?>>
 
-                        products.map { product ->
-                            Pair(product, mdMap[product.employeeId])
-                        }
-                    }
-            }
-            .flatMapIterable { it }
-
-    fun getProducts(page: PageRequest): Mono<PageImpl<Product>> =
-        productRepository.findAllBy(page)
-            .collectList()
-            .zipWith(productRepository.countBy())
-            .map { PageImpl(it.t1, page, it.t2 ) }
+    // Todo Practice 5
+//    fun getProducts(page: PageRequest): Mono<PageImpl<Product>>
 }
 
 

@@ -5,7 +5,10 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.reactive.function.server.RequestPredicates.path
 import org.springframework.web.reactive.function.server.RouterFunctions.nest
+import org.springframework.web.reactive.function.server.body
 import org.springframework.web.reactive.function.server.router
+import reactor.core.publisher.Mono
+import reactor.kotlin.core.publisher.toMono
 
 @Configuration
 class ApiRouter(
@@ -15,11 +18,7 @@ class ApiRouter(
     fun apiRoutes() =
         nest(path("api"),
             router {
-                GET("products/{productId}", apiHandler::getProduct)
-                GET("products/{productId}/employee", apiHandler::getEmployee)
-                GET("deals/{dealId}/products", apiHandler::getProducts)
-                GET("deals/{dealId}/products:employee", apiHandler::getProductsAndEmployee)
-                GET("products", apiHandler::getPagingProducts)
+                GET("") { ok().body("Let's implement WebFlux application!".toMono()) }
             }
         )
 }

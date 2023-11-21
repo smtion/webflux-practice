@@ -16,35 +16,18 @@ class ApiHandler(
     private val apiService: ApiService
 ) {
     fun getProduct(req: ServerRequest): Mono<ServerResponse> =
-        ok().body(
-            apiService.getProduct(req.pathVariable("productId").toLong())
-                .map { ProductDto(it) }
-        )
+        ok().body(Mono.just("implement here"))
 
     fun getEmployee(req: ServerRequest): Mono<ServerResponse> =
-        ok().body(
-            apiService.getEmployee(req.pathVariable("productId").toLong())
-        )
+        ok().body(Mono.just("implement here"))
 
     fun getProducts(req: ServerRequest): Mono<ServerResponse> =
-        ok().body(
-            apiService.getProducts(req.pathVariable("dealId").toLong())
-                .map { ProductDto(it) }
-        )
+        ok().body(Mono.just("implement here"))
 
     fun getProductsAndEmployee(req: ServerRequest): Mono<ServerResponse> =
-        ok().body(
-            apiService.getProductsAndEmployee(req.pathVariable("dealId").toLong())
-                .map { ProductEmployeeDto(it) }
-        )
+        ok().body(Mono.just("implement here"))
 
     fun getPagingProducts(req: ServerRequest): Mono<ServerResponse> {
-        val page: Int = req.queryParam("page").orElse("0").toInt()
-        val size: Int = req.queryParam("size").orElse("10").toInt()
-        val pageable = PageRequest.of(page, size)
-
-        return ok().body(
-            apiService.getProducts(pageable)
-        )
+        return ok().body(Mono.just("implement here"))
     }
 }
