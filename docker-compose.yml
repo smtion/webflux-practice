@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    container_name: webflux-study-mysql
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      TZ: Asia/Seoul
+    # 명렬어 설정
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_general_ci
+    # 볼륨 설정
+    volumes:
+      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
+
