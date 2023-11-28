@@ -1,0 +1,14 @@
+logging:
+  level:
+    com.example: debug
+    org.springframework.r2dbc.core.DefaultDatabaseClient: debug
+    org.springframework.web.reactive.function.client.ExchangeFunctions: debug
+
+
+spring:
+  datasource:
+    product:
+      url: r2dbc:pool:mysql://localhost:3306/test
+
+server:
+  port: 8882
